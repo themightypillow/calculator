@@ -16,11 +16,11 @@
 #display {
   grid-area: display;
   border: 1px solid black;
-  margin-bottom: 2px;
   padding: 0 2px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  height: 3.75rem;
 }
 
 #zero {
