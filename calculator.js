@@ -1,10 +1,14 @@
 const numberBtns = document.querySelectorAll(".number");
 const opBtns = document.querySelectorAll(".op");
 const equalsBtn = document.querySelector("#equals");
+const clearBtn = document.querySelector("#clear");
 const displayDiv = document.querySelector("#display");
 
 const calculator = {
-  display: "",
+  display: ""
+  // first
+  // second
+  // operation
 }
 
 function add(x, y) {
@@ -89,6 +93,18 @@ function addEqualsEventListener() {
   });
 }
 
+function addClearEventListener() {
+  clearBtn.addEventListener("click", event => {
+    delete calculator.first;
+    delete calculator.second;
+    delete calculator.operation;
+    calculator.display = "";
+    displayDiv.textContent = calculator.display;
+    console.log(calculator);
+  });
+}
+
 addNumberEventListeners();
 addOpEventListeners();
 addEqualsEventListener();
+addClearEventListener();
