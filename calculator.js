@@ -43,7 +43,7 @@ function operate(op, x, y) {
 
 function evaluateExpression() {
   calculator.second = Number(calculator.display);
-  console.log(calculator);
+  // console.log(calculator);
   try {
     let result = operate(calculator.operation, calculator.first, calculator.second);
     const decimalPlaces = result.toString().split(".").pop().length;
@@ -64,7 +64,7 @@ function addNumberEventListeners() {
     if(!("operation" in calculator)) delete calculator.first;
     calculator.display += event.target.textContent;
     displayDiv.textContent = calculator.display;
-    console.log(calculator);
+    // console.log(calculator);
   }));
 }
 
@@ -75,13 +75,13 @@ function addOpEventListeners() {
       if(calculator.display) {
         evaluateExpression();
       }
-      console.log(calculator);
+      // console.log(calculator);
     }
     else if(calculator.display) {
       calculator.operation = event.target.dataset.op;
       calculator.first = Number(calculator.display);
       calculator.display = "";
-      console.log(calculator);
+      // console.log(calculator);
     }
   }));
 }
@@ -91,7 +91,7 @@ function addEqualsEventListener() {
     if("first" in calculator && "operation" in calculator) {
       evaluateExpression();
       calculator.display = "";
-      console.log(calculator);
+      // console.log(calculator);
     }
   });
 }
@@ -103,7 +103,7 @@ function addClearEventListener() {
     delete calculator.operation;
     calculator.display = "";
     displayDiv.textContent = calculator.display;
-    console.log(calculator);
+    // console.log(calculator);
   });
 }
 
