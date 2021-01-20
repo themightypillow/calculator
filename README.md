@@ -1,2 +1,1 @@
-# calculator
-The Odin Project: Basic Calculator
+## The Odin Project: Calculator
