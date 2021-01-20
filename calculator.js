@@ -1,3 +1,10 @@
+const numberBtns = document.querySelectorAll(".number");
+const displayDiv = document.querySelector("#display");
+
+const calculator = {
+  display: ""
+}
+
 function add(x, y) {
   return x + y;
 }
@@ -32,3 +39,15 @@ function operate(op, x, y) {
       return divide(x, y);
   }
 }
+
+function addToDisplay(x) {
+  calculator.display += x;
+  displayDiv.textContent = calculator.display;
+}
+
+function addNumberEventListeners() {
+  numberBtns.forEach(number => number.addEventListener("click", 
+    event => addToDisplay(event.target.textContent)));
+}
+
+addNumberEventListeners();
