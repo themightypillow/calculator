@@ -81,11 +81,11 @@ function addOpEventListeners() {
       if(calculator.display) {
         evaluateExpression();
       }
-      calculator.operation = event.target.dataset.op;
+      calculator.operation = event.target.dataset.key;
       // console.log(calculator, 3);
     }
     else if(calculator.display) {
-      calculator.operation = event.target.dataset.op;
+      calculator.operation = event.target.dataset.key;
       calculator.first = Number(calculator.display);
       calculator.display = "";
       // console.log(calculator, 4);
@@ -146,3 +146,12 @@ addEqualsEventListener();
 addClearEventListener();
 addDecimalEventListener();
 addBackspaceEventListener();
+
+window.addEventListener("keypress", event => {
+  if(event.key === "Enter") {
+    equalsBtn.click();
+    return;
+  }
+  const btnPressed = document.querySelector(`button[data-key='${event.key}']`);
+  if(btnPressed) btnPressed.click();
+});
