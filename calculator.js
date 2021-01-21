@@ -63,90 +63,71 @@ function evaluateExpression() {
   calculator.display = "";
 }
 
-function addNumberEventListeners() {
-  numberBtns.forEach(number => number.addEventListener("click", event => {
-    if(!("operation" in calculator)) delete calculator.first;
-    const num = event.target.textContent;
-    if(num !== "0" || (num === "0" && calculator.display !== "0")) {
-      if(num !== "0" && calculator.display === "0") calculator.display = num;
-      else calculator.display += num;
-      displayDiv.textContent = calculator.display;
-    } 
-    // console.log(calculator, 2);
-  }));
-}
-
-function addOpEventListeners() {
-  opBtns.forEach(opBtn => opBtn.addEventListener("click", event => {
-    if("first" in calculator ) {
-      if(calculator.display) {
-        evaluateExpression();
-      }
-      calculator.operation = event.target.dataset.key;
-      // console.log(calculator, 3);
-    }
-    else if(calculator.display) {
-      calculator.operation = event.target.dataset.key;
-      calculator.first = Number(calculator.display);
-      calculator.display = "";
-      // console.log(calculator, 4);
-    }
-  }));
-}
-
-function addEqualsEventListener() {
-  equalsBtn.addEventListener("click", event => {
-    if("first" in calculator && "operation" in calculator && calculator.display) {
-      evaluateExpression();
-      // console.log(calculator, 5);
-    }
-  });
-}
-
-function addClearEventListener() {
-  clearBtn.addEventListener("click", event => {
-    delete calculator.first;
-    delete calculator.second;
-    delete calculator.operation;
-    calculator.display = "";
+numberBtns.forEach(number => number.addEventListener("click", event => {
+  if(!("operation" in calculator)) delete calculator.first;
+  const num = event.target.textContent;
+  if(num !== "0" || (num === "0" && calculator.display !== "0")) {
+    if(num !== "0" && calculator.display === "0") calculator.display = num;
+    else calculator.display += num;
     displayDiv.textContent = calculator.display;
-    // console.log(calculator, 6);
-  });
-}
+  } 
+  // console.log(calculator, 2);
+}));
 
-function addDecimalEventListener() {
-  decimalBtn.addEventListener("click", event => {
-    if(!(calculator.display)) {
-      if(!("operation" in calculator)) delete calculator.first;
-      calculator.display = "0.";
-      displayDiv.textContent = calculator.display;
-      // console.log(calculator, 7);
-    }
-    else if(!calculator.display.includes(".")) {
-      calculator.display += ".";
-      displayDiv.textContent = calculator.display;
-      // console.log(calculator, 8);
-    }
-  });
-}
-
-function addBackspaceEventListener() {
-  backspaceBtn.addEventListener("click", event => {
+opBtns.forEach(opBtn => opBtn.addEventListener("click", event => {
+  if("first" in calculator ) {
     if(calculator.display) {
-      const length = calculator.display.length;
-      calculator.display = calculator.display.slice(0, length - 1);
-      displayDiv.textContent = calculator.display;
-      // console.log(calculator, 9);
+      evaluateExpression();
     }
-  });
-}
+    calculator.operation = event.target.dataset.key;
+    // console.log(calculator, 3);
+  }
+  else if(calculator.display) {
+    calculator.operation = event.target.dataset.key;
+    calculator.first = Number(calculator.display);
+    calculator.display = "";
+    // console.log(calculator, 4);
+  }
+}));
 
-addNumberEventListeners();
-addOpEventListeners();
-addEqualsEventListener();
-addClearEventListener();
-addDecimalEventListener();
-addBackspaceEventListener();
+equalsBtn.addEventListener("click", event => {
+  if("first" in calculator && "operation" in calculator && calculator.display) {
+    evaluateExpression();
+    // console.log(calculator, 5);
+  }
+});
+
+clearBtn.addEventListener("click", event => {
+  delete calculator.first;
+  delete calculator.second;
+  delete calculator.operation;
+  calculator.display = "";
+  displayDiv.textContent = calculator.display;
+  // console.log(calculator, 6);
+});
+
+decimalBtn.addEventListener("click", event => {
+  if(!(calculator.display)) {
+    if(!("operation" in calculator)) delete calculator.first;
+    calculator.display = "0.";
+    displayDiv.textContent = calculator.display;
+    // console.log(calculator, 7);
+  }
+  else if(!calculator.display.includes(".")) {
+    calculator.display += ".";
+    displayDiv.textContent = calculator.display;
+    // console.log(calculator, 8);
+  }
+});
+
+backspaceBtn.addEventListener("click", event => {
+  if(calculator.display) {
+    const length = calculator.display.length;
+    calculator.display = calculator.display.slice(0, length - 1);
+    displayDiv.textContent = calculator.display;
+    // console.log(calculator, 9);
+  }
+});
 
 negateBtn.addEventListener("click", event => {
   if(calculator.display) {
