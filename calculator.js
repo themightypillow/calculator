@@ -4,6 +4,7 @@ const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear");
 const decimalBtn = document.querySelector("#decimal");
 const backspaceBtn = document.querySelector("#backspace");
+const negateBtn = document.querySelector("#negate");
 const displayDiv = document.querySelector("#display");
 
 const calculator = {
@@ -146,6 +147,21 @@ addEqualsEventListener();
 addClearEventListener();
 addDecimalEventListener();
 addBackspaceEventListener();
+
+negateBtn.addEventListener("click", event => {
+  if(calculator.display) {
+    calculator.display *= -1;
+    calculator.display = calculator.display.toString();
+    displayDiv.textContent = calculator.display;
+    // console.log(calculator, 10);
+  }
+  else if(!calculator.display && "first" in calculator && !("operation" in calculator)) {
+    calculator.display = (calculator.first * -1).toString();
+    displayDiv.textContent = calculator.display;
+    delete calculator.first;
+    // console.log(calculator, 11);
+  }
+});
 
 window.addEventListener("keypress", event => {
   if(event.key === "Enter") {
