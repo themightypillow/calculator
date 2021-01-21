@@ -44,7 +44,7 @@ function operate(op, x, y) {
 
 function evaluateExpression() {
   calculator.second = Number(calculator.display);
-  console.log(calculator, 1);
+  // console.log(calculator, 1);
   try {
     let result = operate(calculator.operation, calculator.first, calculator.second);
     const decimalPlaces = result.toString().split(".").pop().length;
@@ -70,7 +70,7 @@ function addNumberEventListeners() {
       else calculator.display += num;
       displayDiv.textContent = calculator.display;
     } 
-    console.log(calculator, 2);
+    // console.log(calculator, 2);
   }));
 }
 
@@ -81,13 +81,13 @@ function addOpEventListeners() {
         evaluateExpression();
       }
       calculator.operation = event.target.dataset.op;
-      console.log(calculator, 3);
+      // console.log(calculator, 3);
     }
     else if(calculator.display) {
       calculator.operation = event.target.dataset.op;
       calculator.first = Number(calculator.display);
       calculator.display = "";
-      console.log(calculator, 4);
+      // console.log(calculator, 4);
     }
   }));
 }
@@ -96,7 +96,7 @@ function addEqualsEventListener() {
   equalsBtn.addEventListener("click", event => {
     if("first" in calculator && "operation" in calculator) {
       evaluateExpression();
-      console.log(calculator, 5);
+      // console.log(calculator, 5);
     }
   });
 }
@@ -108,7 +108,7 @@ function addClearEventListener() {
     delete calculator.operation;
     calculator.display = "";
     displayDiv.textContent = calculator.display;
-    console.log(calculator, 6);
+    // console.log(calculator, 6);
   });
 }
 
@@ -118,12 +118,12 @@ function addDecimalEventListener() {
       if(!("operation" in calculator)) delete calculator.first;
       calculator.display = "0.";
       displayDiv.textContent = calculator.display;
-      console.log(calculator, 7);
+      // console.log(calculator, 7);
     }
     else if(!calculator.display.includes(".")) {
       calculator.display += ".";
       displayDiv.textContent = calculator.display;
-      console.log(calculator, 8);
+      // console.log(calculator, 8);
     }
   });
 }
