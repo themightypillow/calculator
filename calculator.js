@@ -3,6 +3,7 @@ const opBtns = document.querySelectorAll(".op");
 const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear");
 const decimalBtn = document.querySelector("#decimal");
+const backspaceBtn = document.querySelector("#backspace");
 const displayDiv = document.querySelector("#display");
 
 const calculator = {
@@ -94,7 +95,7 @@ function addOpEventListeners() {
 
 function addEqualsEventListener() {
   equalsBtn.addEventListener("click", event => {
-    if("first" in calculator && "operation" in calculator) {
+    if("first" in calculator && "operation" in calculator && calculator.display) {
       evaluateExpression();
       // console.log(calculator, 5);
     }
@@ -128,8 +129,20 @@ function addDecimalEventListener() {
   });
 }
 
+function addBackspaceEventListener() {
+  backspaceBtn.addEventListener("click", event => {
+    if(calculator.display) {
+      const length = calculator.display.length;
+      calculator.display = calculator.display.slice(0, length - 1);
+      displayDiv.textContent = calculator.display;
+      // console.log(calculator, 9);
+    }
+  });
+}
+
 addNumberEventListeners();
 addOpEventListeners();
 addEqualsEventListener();
 addClearEventListener();
 addDecimalEventListener();
+addBackspaceEventListener();
