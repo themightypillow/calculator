@@ -2,6 +2,7 @@ const numberBtns = document.querySelectorAll(".number");
 const opBtns = document.querySelectorAll(".op");
 const equalsBtn = document.querySelector("#equals");
 const clearBtn = document.querySelector("#clear");
+const decimalBtn = document.querySelector("#decimal");
 const displayDiv = document.querySelector("#display");
 
 const calculator = {
@@ -107,7 +108,24 @@ function addClearEventListener() {
   });
 }
 
+function addDecimalEventListener() {
+  decimalBtn.addEventListener("click", event => {
+    if(!(calculator.display)) {
+      if(!("operation" in calculator)) delete calculator.first;
+      calculator.display = "0.";
+      displayDiv.textContent = calculator.display;
+      // console.log(calculator);
+    }
+    else if(!calculator.display.includes(".")) {
+      calculator.display += ".";
+      displayDiv.textContent = calculator.display;
+      // console.log(calculator);
+    }
+  });
+}
+
 addNumberEventListeners();
 addOpEventListeners();
 addEqualsEventListener();
 addClearEventListener();
+addDecimalEventListener();
